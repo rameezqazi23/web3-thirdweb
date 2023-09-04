@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState("dashboard")
-  const [toggleDrawer, setToggleDrawer] = useState("false")
+  const [toggleDrawer, setToggleDrawer] = useState(false)
 
   const address = "0xa4543"
 
@@ -50,11 +50,11 @@ const Navbar = () => {
 
         <img src={menu} alt='menu'
           className='w-[34px] h-[34px] cursor-pointer object-contain'
-          onClick={() => { setToggleDrawer(!toggleDrawer) }}
+          onClick={() => { setToggleDrawer((prev) => !prev) }}
         />
 
-        <div className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 
-        ${!toggleDrawer ? '-translate-y-[100vh]' : 'traslate-y-0'} transition-all duration-700`}>
+        <div className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 rounded-xl 
+        ${!toggleDrawer ? '-translate-y-[100vh]' : 'traslate-y-0'} transition-all duration-700 `}>
 
           <ul className='mb-4'>
             {navlinks.map((link) => (
@@ -63,11 +63,13 @@ const Navbar = () => {
                 className={`flex p-4 cursor-pointer ${isActive === link.name && 'bg-[#3a3a43]'}`}
                 onClick={() => {
                   setIsActive(link.name)
-                  setToggleDrawer(true)
+                  setToggleDrawer(false)
                   navigate(link.link)
                 }}
               >
-                <img src={link.imgUrl} alt={link.name} />
+                <img src={link.imgUrl} alt={link.name}
+                  className={`w-[24px] h-[24px] object-contain ${isActive === link.name ? 'grayscale-0' : 'grayscale'}`}
+                />
                 <p className={`ml-[20px] font-epilogue font-semibold text-[14px]
                 ${isActive === link.name ? 'text-[#1dc071]' : 'text-[#808191]'}
                 `}>
@@ -78,14 +80,20 @@ const Navbar = () => {
             ))}
 
           </ul>
+          <div className='flex mx-4'>
+            <CustomButton
+              btnType="button"
+              title={address ? "Create a Campaign" : "Connect"}
+              styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
+              handleClick={() => {
+                if (address) navigate("create-campaign")
+                else "connect()";
+              }}
+            />
 
+          </div>
         </div>
-
       </div>
-
-
-
-
     </div>
   )
 }
