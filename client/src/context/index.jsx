@@ -5,17 +5,17 @@ import { ethers } from "ethers";
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
+
     const { contract } = useContract('0x390a9a0eF76c71256344A5173AE5372b20D3DDb2')
-    const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign')
+    const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
     const address = useAddress();
     const connect = useMetamask();
 
     const publishCampaign = async (form) => {
-
         try {
             const data = await createCampaign([
-                address, //owner
+                address, //owner address
                 form.title,
                 form.description,
                 form.target,
