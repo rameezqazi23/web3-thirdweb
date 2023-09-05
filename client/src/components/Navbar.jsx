@@ -3,6 +3,7 @@ import { CustomButton } from "./index";
 import { logo, menu, search, thirdweb } from "../assets";
 import { navlinks } from '../constants';
 import { Link, useNavigate } from 'react-router-dom';
+import { useStateContext } from '../context';
 
 
 const Navbar = () => {
@@ -10,7 +11,9 @@ const Navbar = () => {
   const [isActive, setIsActive] = useState("dashboard")
   const [toggleDrawer, setToggleDrawer] = useState(false)
 
-  const address = "0xa4543"
+  const { address, connect } = useStateContext();
+
+  // const address = "0xa4543"
 
   return (
     <div className='flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6'>
@@ -31,7 +34,7 @@ const Navbar = () => {
           styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
           handleClick={() => {
             if (address) navigate("create-campaign")
-            else "connect()";
+            else connect();
           }}
         />
         <Link to="/profile">
@@ -87,7 +90,7 @@ const Navbar = () => {
               styles={address ? 'bg-[#1dc071]' : 'bg-[#8c6dfd]'}
               handleClick={() => {
                 if (address) navigate("create-campaign")
-                else "connect()";
+                else connect();
               }}
             />
 
