@@ -23,7 +23,7 @@ const CampaignCard = ({ owner, title, description, target, deadline, amountColle
                     <h3 className='font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate'>
                         {title}
                     </h3>
-                    <p className='font-epilogue font-normal leading-[18px] text-[#808191] text-left mt-[5px]'>
+                    <p className='font-epilogue font-normal leading-[18px] text-[#808191] text-left mt-[5px] truncate'>
                         {description}
                     </p>
                 </div>
