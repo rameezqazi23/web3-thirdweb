@@ -15,7 +15,7 @@ export const StateContextProvider = ({ children }) => {
     const publishCampaign = async (form) => {
         try {
             const data = await createCampaign({
-                args:[
+                args: [
                     address, //owner address
                     form.title,
                     form.description,
@@ -32,8 +32,33 @@ export const StateContextProvider = ({ children }) => {
         }
     }
 
+    const getCampaigns = async () => {
+        const campaigns = await contract.call('geCampaigns')
+        // console.log("Our Campaigns==>", campaigns)
+
+        const parsedCampaigns = campaigns.map((campaign, index) => ({
+            owner: campaign.owner,
+            title: campaign.title,
+            description: campaign.description,
+            target: ethers.utils.formatEther(campaign.target.toString()),
+            deadline: campaign.deadline.toNumber(),
+            amountCollected: ethers.utils.formatEther(campaign.amountCollected.toString()),
+            image: campaign.image,
+            pId: index,
+        }))
+        console.log("Formated Campaign: ", parsedCampaigns)
+        
+        return parsedCampaigns;
+    }
+
     return (
-        <StateContext.Provider value={{ address, contract, connect, createCampaign: publishCampaign }}>
+        <StateContext.Provider value={{
+            address,
+            contract,
+            connect,
+            createCampaign: publishCampaign,
+            getCampaigns,
+        }}>
             {children}
         </StateContext.Provider>
     )
