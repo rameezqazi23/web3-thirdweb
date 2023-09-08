@@ -10,7 +10,7 @@ import { calculateBarPercentage, daysLeft } from '../utils';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const { address, contract, getDonations } = useStateContext();
+  const { address, contract, getDonations, donate } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState('');
@@ -18,7 +18,21 @@ const CampaignDetails = () => {
 
   const remainingDays = daysLeft(state.deadline)
 
-  const handleDonate = ()=>{
+  useEffect(() => {
+    if (contract) fetchDonations()
+  }, [contract, address])
+
+  const fetchDonations = async () => {
+    const data = await getDonations(state.pId);
+    setDonators(data);
+  }
+
+
+
+  const handleDonate = async () => {
+    setIsLoading(true)
+    await donate(state.pId, amount)
+    setIsLoading(false)
 
   }
 

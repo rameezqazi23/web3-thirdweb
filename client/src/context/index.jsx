@@ -59,6 +59,30 @@ export const StateContextProvider = ({ children }) => {
         return filteredCampaigns;
     }
 
+    const donate = async (pId, amount) => {
+        const data = await campaign.call('donateToCampaign', pId, {
+            value: ethers.utils.parseEther(amount)
+        })
+        console.log("Donate data==>", data)
+        return data;
+    }
+
+    const getDonations = async (pId) => {
+        const donations = await contract.all('getDonators', pId)
+        const numberOfDonations = donations[0].length
+
+        const parsedDonations = [];
+        for (let i = 0; i < numberOfDonations; i++) {
+            parsedDonations.push({
+                donator: donations[0][i],
+                donation: ethers.utils.formatEther(donations[1][i].toString()),
+            })
+        }
+
+        console.log("Parsed Donations==>", parsedDonations)
+        return parsedDonations;
+    }
+
     return (
         <StateContext.Provider value={{
             address,
@@ -66,7 +90,9 @@ export const StateContextProvider = ({ children }) => {
             connect,
             createCampaign: publishCampaign,
             getCampaigns,
-            getUserCampaign
+            getUserCampaign,
+            donate,
+            getDonations,
         }}>
             {children}
         </StateContext.Provider>
