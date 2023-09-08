@@ -48,7 +48,7 @@ const CampaignDetails = () => {
         </div>
       </div>
 
-      <div className='mt-[60px] flex sm:flex-row flex-col gap-5'>
+      <div className='w-full mt-[60px] flex lg:flex-row flex-col gap-5'>
         <div className='flex-1 flex flex-col gap-[40px]'>
           <div>
             <h4 className='font-epilogue font-semibold text-[18px]
@@ -102,13 +102,13 @@ const CampaignDetails = () => {
           </div>
         </div>
 
-        <div className='flex-1'>
+        <div className='w-full flex-1'>
           <h4 className='font-epilogue font-semibold text-[18px]
               text-white uppercase'>
             Fund
           </h4>
 
-          <div className='bg-[#1c1c24] flex flex-col p-4 mt-[20px] rounded-[10px]'>
+          <div className='bg-[#1c1c24]  flex flex-col p-4 mt-[20px] rounded-[10px]'>
             <p className='font-epilogue font-medium text-[20px] leading-[30px] text-center text-[#808191]'>
               Fund The Campaign
             </p>
