@@ -129,14 +129,16 @@ const CampaignDetails = () => {
             <div className='mt-[30px]'>
               <input
                 type="number"
-                step="0.01"
+                step="0.05"
                 placeholder="ETH 0.5"
                 value={amount}
-                onChange={(e) => e.target.value}
+                onChange={(e) => setAmount(e.target.value)}
                 className='w-full py-[10px] bg-transparent sm:px-[20px] px-[15px] 
               outline-none rounded-[10px] border-[1px] border-[#3a3a43] font-epilogue 
               text-white text-[18px] placeholder:text-[#4b5264]'
               />
+
+
             </div>
 
             <div className='flex flex-col items-center justify-center my-[20px] p-4 rounded-[10px] bg-[#13131a]'>
