@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 
-import { CustomButton } from '../components';
+import { CustomButton, Loader } from '../components';
 import { useStateContext } from '../context';
 import { CountBox } from '../components';
 import { thirdweb, loader } from '../assets';
@@ -44,7 +44,8 @@ const CampaignDetails = () => {
   return (
     <div >
       {isLoading && (
-        <img src={loader} alt="loader" className='w-[100px] h-[100px] object-contain' />
+        <Loader />
+        // <img src={loader} alt="loader" className='w-[100px] h-[100px] object-contain' />
       )}
       <div className='w-full flex md:flex-row flex-col mt-10 gap-[30px]'>
         <div className='flex-1 flex-col'>
@@ -106,10 +107,18 @@ const CampaignDetails = () => {
             </h4>
             <div className='mt-[20px] flex flex-col gap-4'>
 
-              {donators.length > 0 ? (donators.map((item, index) => {
-                <div>DONATOR</div>
+              {donators.length > 0 ? (donators.map((item, index) => (
+                <div key={`${item.donator}-${index}`} className='flex justify-between items-center'>
+                  <p className='font epilogue font-normal text-[16px] text-[#b2b3bd] leading-[26px] break-all'>
+                    {index + 1}. {item.donator}
+                  </p>
+                  <p className='font epilogue font-normal text-[16px] text-[#b2b3bd] leading-[26px] break-all'>
+                     {item.donation}
+                  </p>
 
-              })) : (
+                </div>
+
+              ))) : (
 
                 <p className='font-epilogue font-normal text-[16px] text-[#b2b3bd] leading-[26px] text-justify'>
                   There is currently no donators yet. Be the first one.
@@ -155,7 +164,7 @@ const CampaignDetails = () => {
             </div>
             <CustomButton
               btnType="button"
-              title="FUnd Campaign"
+              title="Fund Campaign"
               styles="w-full bg-[#8c6dfd]"
               handleClick={handleDonate}
             />

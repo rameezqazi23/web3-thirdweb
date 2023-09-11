@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import { useNavigate } from 'react-router-dom';
 
 import { money, loader } from '../assets';
-import { CustomButton, FormField } from '../components';
+import { CustomButton, FormField, Loader } from '../components';
 import { checkIfImage } from "../utils";
 import { useStateContext } from '../context';
 
@@ -50,7 +50,8 @@ const CreateCampaign = () => {
   return (
     <div className='flex justify-center items-center flex-col bg-[#1c1c24] sm:p-10 p-4 rounded-[10px]'>
       {isLoading && (
-        <img src={loader} alt="loader" className='w-[100px] h-[100px] object-contain' />
+        <Loader />
+        // <img src={loader} alt="loader" className='w-[100px] h-[100px] object-contain' />
       )}
 
       <div className='flex justify-center items-center p-[16px] bg-[#3a3a43] sm:min-w-[380px] rounded-[10px]'>
