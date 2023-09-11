@@ -24,7 +24,7 @@ export const StateContextProvider = ({ children }) => {
                     form.image,
                 ]
             })
-            console.log("Create Contract Success ==>", data)
+            // console.log("Create Contract Success ==>", data)
 
         } catch (error) {
             console.log("Create Contract failed", error)
@@ -46,7 +46,7 @@ export const StateContextProvider = ({ children }) => {
             image: campaign.image,
             pId: index,
         }))
-        console.log("Formated Campaign: ", parsedCampaigns)
+        // console.log("Formated Campaign: ", parsedCampaigns)
 
         return parsedCampaigns;
     }
@@ -63,7 +63,7 @@ export const StateContextProvider = ({ children }) => {
         const data = await contract.call('donateToCampaign', [pId], {
             value: ethers.utils.parseEther(amount)
         })
-        console.log("Donate data==>", data)
+        // console.log("Donate data==>", data)
         return data;
     }
 
@@ -79,7 +79,7 @@ export const StateContextProvider = ({ children }) => {
             })
         }
 
-        console.log("Parsed Donations==>", parsedDonations)
+        // console.log("Parsed Donations==>", parsedDonations)
         return parsedDonations;
     }
 

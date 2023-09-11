@@ -44,7 +44,7 @@ const CreateCampaign = () => {
 
     })
 
-    console.log("Form data==> ", form)
+    // console.log("Form data==> ", form)
   }
 
   return (

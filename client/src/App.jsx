@@ -5,8 +5,6 @@ import { Navbar, Sidebar } from "./components";
 
 
 const App = () => {
-
-  console.log("Hello from App.js")
   return (
     <div className='relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row'>
       <div className='sm:flex hidden mr-10'>
